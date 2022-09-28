@@ -18,5 +18,24 @@ class  UnitTestRPSGame(unittest.TestCase):
             print("Fail")
             self.fail("shouldn't happen")
 
+    def test_user_input(self):
+        the_rps_game = TheRPSGame()
+        results = the_rps_game.get_user_selection()
+
+        if results == 0:
+            print("Pass")
+            pass
+        elif results == 1:
+            print("Pass")
+            pass
+        elif results == 2:
+            print("Pass")
+            pass
+        else:
+            print("Fail")
+            self.fail("shouldn't happen")
+
+
+
     if __name__ == '__main__':
         unittest.main()
