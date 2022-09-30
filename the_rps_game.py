@@ -1,5 +1,6 @@
 import random
 from enum import IntEnum
+import sys
 
 class Action(IntEnum):
 	Rock = 0
@@ -10,10 +11,16 @@ class Action(IntEnum):
 class TheRPSGame:
 	WIN_COUNT = 5
 	def get_user_selection(self):
-			user_input = input("Enter a choice (rock[0], paper[1], scissors[2]): ")
-			selection = int(user_input)
-			action = Action(selection)
-			return action
+		print(f"**********Welcome to the ROCK PAPER SCISSORS GAME********")
+		for i in range(2):
+				self.next_line()
+		print("********** Select your choice in between 0 - 2 ********")
+		user_input = input("*********Enter a choice (rock[0], paper[1], scissors[2]) or press (q) to quit the game: ")
+		if user_input.lower() == "q":
+			sys.exit()
+		selection = int(user_input)
+		action = Action(selection)
+		return action
 
 	def get_computer_selection(self):
 			selection = random.randint(0, len(Action) - 1)
@@ -22,29 +29,45 @@ class TheRPSGame:
 
 	def check_winning_player(self, user_action, computer_action):
 		if user_action == computer_action:
-			print(f"Both players selected {user_action.name}. It's a tie!")
+			for i in range(2):
+						self.next_line()
+			print(f"Both players selected {user_action.name}. It's a tie! \n")
 		elif user_action == Action.Rock:
 			if computer_action == Action.Scissors:
-				print("Rock smashes scissors! You win!")
+				for i in range(2):
+						self.next_line()
+				print(f"Rock smashes scissors! You win this round!")
 				self.user_win_count += 1
 			else:
-				print("Paper covers rock! You lose.")
+				for i in range(2):
+						self.next_line()
+				print(f"Paper covers rock! You lose.")
 				self.computer_win_count += 1
 		elif user_action == Action.Paper:
 			if computer_action == Action.Rock:
-				print("Paper covers rock! You win!")
+				for i in range(2):
+					self.next_line()
+				print(f"Paper covers rock! You win!")
 				self.user_win_count += 1
 			else:
-				print("Scissors cuts paper! You lose.")
+				for i in range(2):
+					self.next_line()
+				print(f"Scissors cuts paper! You lose.")
 				self.computer_win_count += 1
 		elif user_action == Action.Scissors:
 			if computer_action == Action.Paper:
-				print("Scissors cuts paper! You win!")
+				for i in range(2):
+					self.next_line()
+				print(f"Scissors cuts paper! You win!")
 				self.user_win_count += 1
 			else:
-				print("Rock smashes scissors! You lose.")
+				for i in range(2):
+						self.next_line()
+				print(f"Rock smashes scissors! You lose.")
 				self.computer_win_count += 1
 
+	def next_line(self):
+		print("********************************************************* \n")
 	def main(self):
 
 		self.computer_win_count = 0
@@ -61,10 +84,16 @@ class TheRPSGame:
 				computer_action = self.get_computer_selection()
 				self.check_winning_player(user_action, computer_action)
 				if self.user_win_count == self.WIN_COUNT:
+					for i in range(2):
+							self.next_line()
 					print(f"You won")
+					self.next_line()
 					break
 				elif self.computer_win_count == self.WIN_COUNT:
+					for i in range(2):
+							self.next_line()
 					print(f"Computer won")
+					self.next_line()
 					break
 
 
