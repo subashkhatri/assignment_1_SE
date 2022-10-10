@@ -3,61 +3,65 @@ from pdb import set_trace
 import random
 import unittest
 from unittest.mock import patch
+from unittest import mock
 
 from enum import IntEnum
 from the_rps_game import TheRPSGame
+from unittest.mock import patch
+
 
 class Action(IntEnum):
     Rock = 0
     Paper = 1
     Scissors = 2
 
-class  UnitTestRPSGame(unittest.TestCase):
-    def test_computer_selection(self):
+
+# @patch('builtins.print')
+class UnitTestRPSGame(unittest.TestCase):
+    def test_paper_wins_against_rock(self):
+        # rock[0], paper[1], scissors[2]
         the_rps_game = TheRPSGame()
-        results = []
-        for i in range(10):
-            results.append(the_rps_game.get_computer_selection())
+        user_action = 1
+        computer_action = 0
+        the_rps_game.check_winning_player(user_action, computer_action)
+        assert the_rps_game.user_win_count == 1
 
-        new_result = len(set(results))
-
-        if new_result > 1:
-            print("Test passed!")
-        else:
-            print("Test has failed!")
-            self.fail("Fail")
-
-    def test_user_input(self):
+    def test_rock_wins_against_scissor(self):
         the_rps_game = TheRPSGame()
-        results = random.randint(0,2)
-        if results == Action.Rock:
-            print("Test passed!")
-            pass
-        elif results == Action.Paper:
-            print("Test passed!")
-            pass
-        elif results == Action.Scissors:
-            print("Test passed!")
-            pass
-        else:
-            print("Test has failed!")
-            self.fail("Fail")
+        user_action = 0
+        computer_action = 2
+        the_rps_game.check_winning_player(user_action, computer_action)
+        assert the_rps_game.user_win_count == 1
 
-    def test_winning_player(self):
-        user_selection = random.randint(0,2)
-        computer_selection = random.randint(0,2)
+    def test_scissor_wins_against_paper(self):
         the_rps_game = TheRPSGame()
-        the_rps_game.check_winning_player(user_selection, computer_selection)
+        user_action = 2
+        computer_action = 1
+        the_rps_game.check_winning_player(user_action, computer_action)
+        assert the_rps_game.user_win_count == 1
 
-        if user_selection > 3 or user_selection < 0:
-            print("Test case has failed!")
-            self.fail("Failed")
-        elif computer_selection > 3 or computer_selection < 0:
-            print("Test case has failed!")
-            self.fail("Failed")
-        else:
-            print("Test has passed!")
-            pass
+    def test_computer_randomly_picks_options(self):
+        # breakpoint()
+        the_rps_game = TheRPSGame()
+        assert (the_rps_game.get_computer_selection() != None) == True
 
-    if __name__ == '__main__':
-        unittest.main()
+    def test_winner_gets_one_point(self):
+        the_rps_game = TheRPSGame()
+        user_action = 2
+        computer_action = 1
+        the_rps_game.check_winning_player(user_action, computer_action)
+        assert the_rps_game.user_win_count == 1
+        assert the_rps_game.computer_win_count == 0
+
+    def test_game_is_won_with_five_points(self):
+        the_rps_game = TheRPSGame()
+        the_rps_game.user_win_count = 4
+        the_rps_game.computer_win_count = 0
+        assert the_rps_game.is_game_won() != True
+
+        the_rps_game.user_win_count = 5
+        assert the_rps_game.is_game_won() == True
+
+
+if __name__ == "__main__":
+    unittest.main()
