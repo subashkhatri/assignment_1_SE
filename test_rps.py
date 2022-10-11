@@ -1,10 +1,4 @@
-from logging import error
-from pdb import set_trace
-import random
 import unittest
-from unittest.mock import patch
-from unittest import mock
-
 from enum import IntEnum
 from the_rps_game import TheRPSGame
 from unittest.mock import patch

@@ -95,6 +95,7 @@ class TheRPSGame:
 
     def main(self):
         print("Starting Game")
+        self.run()
 
     def run(self):
         self.computer_win_count = 0
