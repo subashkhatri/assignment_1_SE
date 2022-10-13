@@ -44,35 +44,35 @@ class TheRPSGame:
             if computer_action == Action.Scissors:
                 for i in range(2):
                     self.next_line()
-                print(f"Rock smashes scissors! You win this round!")
                 self.user_win_count += 1
+                print(f"Rock smashes scissors! You win this round!")
             else:
                 for i in range(2):
                     self.next_line()
-                print(f"Paper covers rock! You lose.")
                 self.computer_win_count += 1
+                print(f"Paper covers rock! You lose.")
         elif user_action == Action.Paper:
             if computer_action == Action.Rock:
                 for i in range(2):
                     self.next_line()
-                print(f"Paper covers rock! You win!")
                 self.user_win_count += 1
+                print(f"Paper covers rock! You win!",  self.user_win_count)
             else:
                 for i in range(2):
                     self.next_line()
-                print(f"Scissors cuts paper! You lose.")
                 self.computer_win_count += 1
+                print(f"Scissors cuts paper! You lose.")
         elif user_action == Action.Scissors:
             if computer_action == Action.Paper:
                 for i in range(2):
                     self.next_line()
-                print(f"Scissors cuts paper! You win!")
                 self.user_win_count += 1
+                print(f"Scissors cuts paper! You win!",  self.user_win_count)
             else:
                 for i in range(2):
                     self.next_line()
-                print(f"Rock smashes scissors! You lose.")
                 self.computer_win_count += 1
+                print(f"Rock smashes scissors! You lose.")
 
     def is_game_won(self):
         if self.user_win_count == self.WIN_COUNT:

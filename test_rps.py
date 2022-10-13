@@ -1,7 +1,8 @@
 import unittest
-from enum import IntEnum
 from the_rps_game import TheRPSGame
+
 from unittest.mock import patch
+from enum import IntEnum
 
 
 class Action(IntEnum):
